@@ -16,7 +16,7 @@
             
             <div style="display: flex; align-items: center; gap: 1rem; font-size: 1.05rem; font-weight: 600; color: #1e3a8a;">
                 <i class="bi bi-list" style="font-size: 1.5rem; cursor: pointer; color: #334155;"></i>
-                Galeri
+                Kontak Masuk
             </div>
 
             <div style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem; font-weight: 600; color: #1e293b;">

@@ -57,7 +57,7 @@
         <!-- Kolom Kanan: Foto Lapangan Sekolah -->
         <div class="col-lg-6">
           <div class="h-100 w-100 overflow-hidden rounded-4">
-            <img src="{{ asset('images/smkn4.jpg') }}" 
+            <img src="{{ asset('images/smkn4(2).jpg') }}" 
                  alt="Lapangan SMKN 4 Bogor" 
                  class="img-fluid w-100 h-100 rounded-4" 
                  style="object-fit: cover; object-position: center; min-height: 320px;">

@@ -6,6 +6,7 @@ use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\KontakController;
+use App\Http\Controllers\RatingController;
 
 // Halaman Beranda Utama
 Route::get('/', function () {
@@ -43,3 +44,8 @@ Route::delete('/kontak/{id}', [KontakController::class, 'destroy'])->name('konta
 
 // LOGOUT
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+//Rating
+Route::get('/rating', [RatingController::class, 'index'])->name('rating.index');
+Route::post('/rating', [RatingController::class, 'store'])->name('rating.store');
+Route::delete('/rating/{id}', [RatingController::class, 'destroy'])->name('rating.destroy');

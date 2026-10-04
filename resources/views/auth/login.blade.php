@@ -18,7 +18,7 @@
       width: 100vw !important;
       overflow: hidden !important;
       /* Menggunakan file lokal di folder public/images/lapangan-basket.jpg */
-      background-image: url('{{ asset("images/login.jpg") }}') !important;
+      background-image: url('{{ asset("images/login2.jpg") }}') !important;
       background-size: cover !important;
       background-position: center !important;
       display: flex !important;

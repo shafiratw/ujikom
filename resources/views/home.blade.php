@@ -8,5 +8,6 @@
     @include('partials.pengumuman')
     @include('partials.galeri')
     @include('partials.form-kontak')
+    @include('partials.rating')
     @include('partials.footer')
 @endsection

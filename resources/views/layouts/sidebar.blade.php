@@ -28,6 +28,9 @@
             <a href="{{ url('/kontak') }}" style="display: flex; align-items: center; gap: 1rem; padding: 0.85rem 1.15rem; {{ Request::is('kontak*') ? 'background: #0066cc; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);' : '' }} color: #ffffff; text-decoration: none; border-radius: 12px; font-size: 0.9rem;">
                 <i class="bi bi-envelope-fill" style="font-size: 1.15rem;"></i> Kontak
             </a>
+            <a href="{{ url('/rating') }}" style="display: flex; align-items: center; gap: 1rem; padding: 0.85rem 1.15rem; {{ Request::is('rating*') ? 'background: #0066cc; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);' : '' }} color: #ffffff; text-decoration: none; border-radius: 12px; font-size: 0.9rem;">
+                <i class="bi bi-star-fill" style="font-size: 1.15rem;"></i> Rating
+            </a>
         </div>
     </div>
 
