@@ -4,8 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
-use App\Models\Galeri;
-use App\Models\Pengumuman;
+use App\Models\ProfilPerusahaan;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,10 +15,9 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        // Bagikan data Galeri dan Pengumuman ke semua Blade
-        View::composer('*', function ($view) {
-            $view->with('galeri', Galeri::latest()->get());
-            $view->with('pengumuman', Pengumuman::latest()->get());
+    // Bagikan data profil ke navbar, footer, dan semua halaman front/*
+    View::composer(['layouts.app', 'partials.navbar', 'partials.footer', 'front.*'], function ($view) {  
+            $view->with('profil', ProfilPerusahaan::data());
         });
     }
 }

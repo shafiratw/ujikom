@@ -1,46 +1,47 @@
-<!-- 1. SIDEBAR KIRI (Biru) -->
-<div style="width: 280px; min-width: 280px; background-color: #0085ff; color: #ffffff; display: flex; flex-direction: column; justify-content: space-between; padding: 2rem 1.25rem; height: 100%;">
+@php
+    // [label, nama route, pola route untuk menu aktif, ikon]
+    $menu = [
+        ['Dashboard',         'dashboard',           'dashboard',       'bi-speedometer2'],
+        ['Profil Perusahaan', 'admin.profil.edit',   'admin.profil.*',  'bi-building'],
+        ['Layanan',           'admin.layanan.index', 'admin.layanan.*', 'bi-hdd-network'],
+        ['Artikel',           'admin.artikel.index', 'admin.artikel.*', 'bi-newspaper'],
+        ['Galeri',            'admin.galeri.index',  'admin.galeri.*',  'bi-images'],
+        ['Pesan Masuk',       'admin.pesan.index',   'admin.pesan.*',   'bi-envelope'],
+    ];
+@endphp
+
+<aside class="admin-sidebar">
     <div>
-        <!-- Brand / Logo SMK dengan Buletan Putih -->
-        <div style="display: flex; align-items: center; gap: 0.85rem; margin-bottom: 2rem; padding-left: 0.5rem;">
-            <div style="width: 46px; height: 46px; min-width: 46px; background-color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                <img src="{{ asset('images/logo.jpg') }}" alt="Logo" style="width: 30px; height: auto;" onerror="this.src='https://via.placeholder.com/30'">
-            </div>
+        <!-- Brand -->
+        <div class="d-flex align-items-center gap-2 mb-4 px-2">
+            <span class="bg-white rounded-3 d-flex align-items-center justify-content-center p-1"
+                style="width:44px;height:44px;">
+                <img src="{{ asset('images/logo2.jpg') }}" alt="Logo" style="max-width:100%; max-height:100%;" onerror="this.style.display='none'">
+            </span>
             <div>
-                <h3 style="font-size: 0.95rem; font-weight: 700; margin: 0; color: #ffffff; letter-spacing: 0.3px;">SMKN 4 BOGOR</h3>
-                <span style="font-size: 0.75rem; color: rgba(255, 255, 255, 0.85);">Panel Admin</span>
+                <div class="fw-bold" style="font-size:.95rem;">SOLUSI KONEKSI</div>
+                <small style="opacity:.85;">Panel Admin</small>
             </div>
         </div>
 
-        <div style="border-bottom: 1px solid rgba(255, 255, 255, 0.2); margin-bottom: 1.5rem;"></div>
+        <hr style="border-color: rgba(255,255,255,.3);">
 
-        <!-- Menu Navigasi -->
-        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-            <a href="{{ url('/dashboard') }}" style="display: flex; align-items: center; gap: 1rem; padding: 0.85rem 1.15rem; {{ Request::is('dashboard*') ? 'background: #0066cc; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);' : '' }} color: #ffffff; text-decoration: none; border-radius: 12px; font-size: 0.9rem;">
-                <i class="bi bi-house-door-fill" style="font-size: 1.15rem;"></i> Dashboard
-            </a>
-            <a href="{{ url('/pengumuman') }}" style="display: flex; align-items: center; gap: 1rem; padding: 0.85rem 1.15rem; {{ Request::is('pengumuman*') ? 'background: #0066cc; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);' : '' }} color: #ffffff; text-decoration: none; border-radius: 12px; font-size: 0.9rem;">
-                <i class="bi bi-megaphone-fill" style="font-size: 1.15rem;"></i> Pengumuman
-            </a>
-            <a href="{{ url('/galeri') }}" style="display: flex; align-items: center; gap: 1rem; padding: 0.85rem 1.15rem; {{ Request::is('galeri*') ? 'background: #0066cc; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);' : '' }} color: #ffffff; text-decoration: none; border-radius: 12px; font-size: 0.9rem;">
-                <i class="bi bi-image-fill" style="font-size: 1.15rem;"></i> Galeri
-            </a>
-            <a href="{{ url('/kontak') }}" style="display: flex; align-items: center; gap: 1rem; padding: 0.85rem 1.15rem; {{ Request::is('kontak*') ? 'background: #0066cc; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);' : '' }} color: #ffffff; text-decoration: none; border-radius: 12px; font-size: 0.9rem;">
-                <i class="bi bi-envelope-fill" style="font-size: 1.15rem;"></i> Kontak
-            </a>
-            <a href="{{ url('/rating') }}" style="display: flex; align-items: center; gap: 1rem; padding: 0.85rem 1.15rem; {{ Request::is('rating*') ? 'background: #0066cc; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);' : '' }} color: #ffffff; text-decoration: none; border-radius: 12px; font-size: 0.9rem;">
-                <i class="bi bi-star-fill" style="font-size: 1.15rem;"></i> Rating
-            </a>
-        </div>
+        <!-- Menu -->
+        <nav class="d-flex flex-column gap-1">
+            @foreach($menu as [$label, $route, $pola, $ikon])
+                <a href="{{ route($route) }}" class="side-link {{ request()->routeIs($pola) ? 'active' : '' }}">
+                    <i class="bi {{ $ikon }} fs-5"></i> {{ $label }}
+                </a>
+            @endforeach
+        </nav>
     </div>
 
-    <!-- Tombol Keluar -->
-    <div style="border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 1.25rem;">
-        <form action="{{ url('/logout') }}" method="POST">
+    <div>
+        <form action="{{ route('logout') }}" method="POST">
             @csrf
-            <button type="submit" style="display: flex; align-items: center; gap: 1rem; padding: 0.85rem 1.15rem; background: none; border: none; color: #ffffff; width: 100%; cursor: pointer; font-weight: 600; font-size: 0.9rem; text-align: left;">
-                <i class="bi bi-box-arrow-right" style="font-size: 1.15rem;"></i> Keluar
+            <button type="submit" class="side-link w-100 border-0 bg-transparent text-start">
+                <i class="bi bi-box-arrow-right fs-5"></i> Keluar
             </button>
         </form>
     </div>
-</div>
+</aside>

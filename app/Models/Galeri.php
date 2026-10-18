@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Galeri extends Model
 {
@@ -13,4 +14,15 @@ class Galeri extends Model
         'deskripsi',
         'foto',
     ];
+
+    public function getFotoUrlAttribute()
+    {
+        if (!$this->foto) {
+            return null;
+        }
+
+        return Str::startsWith($this->foto, 'images/')
+            ? asset($this->foto)
+            : asset('storage/' . $this->foto);
+    }
 }
