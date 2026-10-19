@@ -15,6 +15,11 @@ class ProdukController extends Controller
 
     public function store(Request $request)
     {
+        // Bersihkan input harga dari titik, koma, atau spasi (ubah jadi angka murni)
+        $request->merge([
+            'harga' => preg_replace('/[^0-9]/', '', $request->harga),
+        ]);
+
         $data = $request->validate([
             'nama'      => 'required|string|max:255',
             'deskripsi' => 'required|string',
@@ -34,6 +39,11 @@ class ProdukController extends Controller
     public function update(Request $request, $id)
     {
         $produk = Produk::findOrFail($id);
+
+        // Bersihkan input harga pada proses update juga
+        $request->merge([
+            'harga' => preg_replace('/[^0-9]/', '', $request->harga),
+        ]);
 
         $data = $request->validate([
             'nama'      => 'required|string|max:255',

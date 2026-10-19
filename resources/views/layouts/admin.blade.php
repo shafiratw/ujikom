@@ -23,7 +23,7 @@
             bottom: 0;
             width: 260px;
             overflow-y: auto;
-            background: #0085ff;
+            background: #ee6ab3;
             color: #fff;
             display: flex;
             flex-direction: column;
@@ -51,7 +51,7 @@
             font-size: .9rem;
         }
         .side-link:hover { background: rgba(255,255,255,.15); color: #fff; }
-        .side-link.active { background: #0066cc; font-weight: 600; }
+        .side-link.active { background: #ee44a2; font-weight: 600; }
 
         @media (max-width: 991px) {
             .admin-sidebar { position: static; width: 100%; }
